@@ -7,7 +7,7 @@
     <title>Echo - Gerenciamento de frotas ecológico</title>
 
 <!--================== LINKS ==================-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@
         <nav class="navbar">
             <div class="nav-menu">
                 <div class="logo">
-                    <a href="index.php"><img src="svg/Logo.svg" alt="Echo"></a>
+                    <a href="index.php"><img src="src/svg/Logo.svg" alt="Echo"></a>
                 </div>
-                <div class="burger"><img src="svg/burg.svg"></div>
+                <div class="burger"><img src="src/svg/burg.svg"></div>
                 <ul class="nav-list">
                     <li><a href="https://github.com/LuanODias/Echo" class="nav-link" style="border-bottom-left-radius: 40px; border-top-left-radius: 40px;">Projeto</a></li>
                     <li><a href="integrantes.php" class="nav-link">Integrantes</a></li>
@@ -117,6 +117,6 @@
             </div>
             </form>
     </section>
-    <img src="svg/Wave.svg" alt="Wave" class="wave" style="position: fixed; bottom: -90px;">
+    <img src="src/svg/Wave.svg" alt="Wave" class="wave" style="position: fixed; bottom: -90px;">
 </body>
 </html>

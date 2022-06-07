@@ -1,0 +1,25 @@
+{
+    "name": "luandias/echomvc",
+    "description": "configuracao de Rotas no MVC",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Luandias\\Echomvc\\": "src/",
+            "App\\" : "App\\",
+            "Core\\" : "Core\\"
+        },
+        "files":[
+            "Config/config.php"   
+        ]
+    },   
+    "authors": [
+        {
+            "name": "Luan",
+            "email": "luoliveidias@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php" : "7.3"
+    }
+}

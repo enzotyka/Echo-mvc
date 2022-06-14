@@ -6,6 +6,7 @@
 use App\Models\Crud;
 
     class Site extends Crud{
+        
         public function home(){
             require_once __DIR__ . '/../Views/home.php';
         }
@@ -26,6 +27,4 @@ use App\Models\Crud;
         public function principal(){
             require_once __DIR__ . '/../Views/principal.php';
         }
-
-
     }

@@ -20,13 +20,13 @@
         <nav class="navbar">
             <div class="nav-menu">
                 <div class="logo">
-                    <a href="index.php"><img src="src/svg/Logo.svg" alt="Echo"></a>
+                    <a href="?router=Site/home/"><img src="src/svg/Logo.svg" alt="Echo"></a>
                 </div>
                 <div class="burger"><img src="src/svg/burg.svg"></div>
                 <ul class="nav-list">
                     <li><a href="https://github.com/LuanODias/Echo" class="nav-link" style="border-bottom-left-radius: 40px; border-top-left-radius: 40px;">Projeto</a></li>
-                    <li><a href="integrantes.php" class="nav-link">Integrantes</a></li>
-                    <li><a href="carbono.php" class="nav-link" style="border-bottom-right-radius: 40px; border-top-right-radius: 40px;">Carbono</a></li>
+                    <li><a href="?router=Site/integrantes/" class="nav-link">Integrantes</a></li>
+                    <li><a href="?router=Site/carbono/" class="nav-link" style="border-bottom-right-radius: 40px; border-top-right-radius: 40px;">Carbono</a></li>
                 </ul>
             </div>
             <a href="login.php" class="btnAcessar">Acesse já</a>
@@ -44,7 +44,7 @@
                 <p>gerencie sua empresa pensando verde!</p>
         <div class="notification is-success">
         </div>
-            <form action="cadastrar.php" method= "POST">
+            <form action="" method= "POST">
             <div class="format">
                 <div class="first-row">
                         <div class="column">
@@ -87,7 +87,7 @@
             </div>
             </form>
 
-            <form action="log.php" method= "POST">
+            <form action="logar.php" method="POST">
             <div class="container-login">
                 <div class="linha"></div> 
                 <div class="menu-login">
@@ -97,7 +97,7 @@
                     <div class="input-login">
                         <div class="login-row">
                             <div class="row">
-                                <label for="usuarui">Usuário</label>
+                                <label for="usuarui">Email</label>
                                 <input name="usuario" name="text" class="input is-large" autofocus="">
                             </div>
                                 <div class="row">

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Controllers\Site;
+use Usuario;
+
 class Crud extends Connection
 {
+
     public function cadastro(){
 
         if($_POST){
@@ -25,28 +29,34 @@ class Crud extends Connection
             $stmt->execute();
     
             return $stmt;
+            
         } 
     }
 
     public function logar(){
 
-        $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS);
+        
+
+        if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) && !empty($_POST['senha'])){
+
+        $u = new Usuario();
+
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
         $senha = md5(filter_input(INPUT_POST, 'senha', FILTER_DEFAULT));
 
-        $conn = $this->connect();
-        $sql = "select usuario from tb_pessoa where usuario = :usuario and senha = md5(:senha)";
+        if($u->login($email, $senha) == true){
+            if(isset($_SESSION['id'])){
+                header('?router=Site/principal/');
+            }else{
+                header('?router=Site/login/');
+            }
+        }else{
+            header('?router=Site/login/');
+        }
 
-        
-
-
-        
-
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':usuario', $usuario);
-        $stmt->bindParam(':senha', $senha);
-        $stmt->execute();
 
     }
+}
 
 
 

@@ -7,7 +7,7 @@
     <title>Echo - Gerenciamento de frotas ecológico</title>
 
 <!--================== LINKS ==================-->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
@@ -15,6 +15,9 @@
 
 </head>
 <body>
+    <?php include("header.php");?>
+    <div class="container-principal">
+
     <section class="formulario">
         <div class="inputs">
             <label for="">Km rodado</label>
@@ -52,5 +55,8 @@
             </tr>
         </table>
     </section>
+    </div>
+    <?php include("footer.php");?>
+
 </body>
 </html>

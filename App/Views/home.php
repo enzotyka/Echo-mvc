@@ -7,7 +7,7 @@
     <title>Echo - Gerenciamento de frotas ecológico</title>
 
 <!--================== LINKS ==================-->
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
@@ -20,11 +20,11 @@
         <nav class="navbar">
             <div class="nav-menu">
                 <div class="logo">
-                    <a href="?router=Site/home/"><img src="src/svg/Logo.svg" alt="Echo"></a>
+                    <a href="?router=Site/home/"><img src="public/assets/svg/Logo.svg" alt="Echo"></a>
                 </div>
-                <div class="burger"><img src="src/svg/burg.svg"></div>
+                <div class="burger"><img src="public/assets/svg/burg.svg"></div>
                 <ul class="nav-list">
-                    <li><a href="https://github.com/LuanODias/Echo" class="nav-link" style="border-bottom-left-radius: 40px; border-top-left-radius: 40px;">Projeto</a></li>
+                    <li><a href="https://github.com/LuanODias/Echo-mvc" class="nav-link" style="border-bottom-left-radius: 40px; border-top-left-radius: 40px;">GITHUB</a></li>
                     <li><a href="?router=Site/integrantes/" class="nav-link">Integrantes</a></li>
                     <li><a href="?router=Site/carbono/" class="nav-link" style="border-bottom-right-radius: 40px; border-top-right-radius: 40px;">Carbono</a></li>
                 </ul>
@@ -47,10 +47,10 @@
             </p>
         </div>
         <div class="container-item-2 z-index">
-            <img src="src/img/ExemploMenu.png" class="exemplo"/>
+            <img src="public/assets/img/ExemploMenu.png" class="exemplo"/>
         </div> 
     </section>
-    <img src="src/svg/Wave.svg" alt="Wave" class="wave">
+    <img src="public/assets/svg/Wave.svg" alt="Wave" class="wave">
     
     <div class="background">
         <section class="container-2">
@@ -61,7 +61,7 @@
             <div class="container-item-3">
                 <div class="card">
                     <div class="card-image">
-                        <img src="src/img/imgveiculo.png">
+                        <img src="public/assets/img/imgveiculo.png">
                     </div>
                     <h3 class="name">Veiculos</h3>
                     <p class="comment">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="card">
                     <div class="card-image">
-                        <img src="src/img/imgfuncionarios.png">
+                        <img src="public/assets/img/imgfuncionarios.png">
                     </div>
                     <h3 class="name">Funcionarios</h3>
                     <p class="comment">
@@ -82,7 +82,7 @@
                 </div>
                 <div class="card">
                     <div class="card-image">
-                        <img src="src/img/imgchamados.png">
+                        <img src="public/assets/img/imgchamados.png">
                     </div>
                     <h3 class="name">Chamados</h3>
                     <p class="comment">

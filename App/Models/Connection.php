@@ -3,10 +3,10 @@
 namespace App\Models;
 
 abstract class Connection{
+
     private $dbname = 'mysql:host=localhost;dbname=echo';
     private $user = 'root';
-    private $pass = '135790';
-
+    private $pass = '';
 
     protected function connect(){   
         try{

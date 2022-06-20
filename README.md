@@ -1,7 +1,6 @@
 # ECHO - GERENCIAMENTO DE FROTAS ECOLÓGICO
 
-git clone git@github.com:FelipeRfariasDev/echo.git
-
+git clone git@github.com:
 cd echo
 
 composer install

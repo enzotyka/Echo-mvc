@@ -1,59 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echo - Gerenciamento de frotas ecológico</title>
-
-    <!--================== LINKS ==================-->
-    <link rel="stylesheet" href="public/assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
-
-
-</head>
-
-<body>
-    <!--================== HEADER ==================-->
-    <header>
-        <nav class="navbar">
-            <div class="nav-menu">
-                <div class="logo">
-                    <a href="index.php"><img src="public/assets/svg/Logo.svg" alt="Echo"></a>
-                </div>
-                <div class="burger"><img src="public/assets/svg/burg.svg"></div>
-                <ul class="nav-list">
-                    <li><a href="https://github.com/LuanODias/Echo-mvc" class="nav-link" style="border-bottom-left-radius: 40px; border-top-left-radius: 40px;">Projeto</a></li>
-                    <li><a href="?router=Site/integrantes/" class="nav-link">Integrantes</a></li>
-                    <li><a href="?router=Site/carbono/" class="nav-link" style="border-bottom-right-radius: 40px; border-top-right-radius: 40px;">Carbono</a></li>
-                </ul>
-            </div>
-            <a href="?router=Site/principal/" class="btnAcessar">Acesse já</a>
-        </nav>
-    </header>
-
-
-
-    <!--================== CONTAINER ==================-->
-
+<?php include("header.php");?>
+<?php include("Element/nav-menu-login.php");?>
     <section class="container">
             <div class="container-left">
                 <h1>Registre-se Gratuitamente</h1>
                 <p>gerencie sua empresa pensando verde!</p>
                 <?php
-                if ($_SESSION["cadastroSuccess"]==true) {
+                if ( !empty($_SESSION["cadastroSuccess"]) &&  $_SESSION["cadastroSuccess"]==true) {
                 ?>
-                    <div class="notification is-success">
+                    <div class="notification is-success" style="color: #ffffff;text-decoration-line: underline;background-color: #6d985d;">
                         <p>Cadastro realizado com sucesso!</p>
                     </div>
                 <?php
                     $_SESSION["cadastroSuccess"]=false;
                 }
                 ?>
-                <form action="" method="POST">
+                <form action="/Usuarios/novo" method="POST">
                     <input type="hidden" value="novo" name="tiporequisicao">
                     <div class="format">
                         <div class="first-row">
@@ -81,12 +42,12 @@
 
                     <div class="button">
                         <button type="submit" class="btncadastro">Cadastre-se já</button>
-                        <p>Ao criar uma conta, você declara que possui mais de 16 anos de idade e está de acordo com os <a href="#" style="color: blue;">Termos de Serviço</a> & <a href="#" style="color: blue;">Política de Privacidade</a>.</p>
+                        <p>Ao criar uma conta, você declara que possui mais de 16 anos de idade e está de acordo com os <a href="/#" style="color: blue;">Termos de Serviço</a> & <a href="/#" style="color: blue;">Política de Privacidade</a>.</p>
                     </div>
             </div>
             </form>
 
-            <form action="" method="POST">
+            <form action="/Usuarios/login" method="POST">
                 <input type="hidden" value="login" name="tiporequisicao">
                 <div class="container-login">
                     <div class="linha"></div>
@@ -94,9 +55,9 @@
                         <h1>Iniciar sessão</h1>
                         <p>Já possui uma conta? Faça login aqui embaixo.</p>
                         <?php
-                        if ($_SESSION["cadastroErros"]==true) {
+                        if (!empty($_SESSION["cadastroErros"]) && $_SESSION["cadastroErros"]==true) {
                         ?>
-                            <div class="notification is-success">
+                            <div class="notification is-error" style="color: #af4646;text-decoration-line: underline;font-size: small;font-weight: bolder;">
                                 <p>Email ou senha incorretos!</p>
                             </div>
                         <?php
@@ -117,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="buttonlogin">
-                                <button type="submit" class="btnlogin">Iniciar sessão</button>
+                                <input type="submit" class="btnlogin" style="color: #ffffff!important;" value="Iniciar sessão" />
                                 <p>Problemas para entrar na sua conta? Certifique que seu navegador está com Javascript e cookies habilitados.</p>
                             </div>
                         </div>
@@ -125,7 +86,4 @@
                 </div>
             </form>
     </section>
-    <img src="public/assets/svg/Wave.svg" alt="Wave" class="wave" style="position: fixed; bottom: -90px;">
-</body>
-
-</html>
+<?php include("footer.php");?>

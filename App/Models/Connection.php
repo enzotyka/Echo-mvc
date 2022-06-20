@@ -8,7 +8,7 @@ abstract class Connection{
     private $user = 'root';
     private $pass = '';
 
-    protected function connect(){   
+    protected function connect(){
         try{
             $conn = new \PDO($this->dbname, $this->user, $this->pass);
             $conn->exec("set names utf8");

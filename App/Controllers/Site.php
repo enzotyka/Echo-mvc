@@ -8,62 +8,32 @@ class Site
 {
     public function home()
     {
-        require_once __DIR__ . '/../Views/home.php';
+        require_once __DIR__ . '/../Views/Pages/home.php';
     }
 
     public function carbono()
     {
-        require_once __DIR__ . '/../Views/carbono.php';
+        require_once __DIR__ . '/../Views/Pages/carbono.php';
     }
 
     public function integrantes()
     {
-        require_once __DIR__ . '/../Views/integrantes.php';
+        require_once __DIR__ . '/../Views/Pages/integrantes.php';
     }
-
-    public function login()
-    {
-        if ($_POST) {
-            if($_POST["tiporequisicao"]=="novo"){
-                //novo usuário
-                echo "novo usuário";
-                $_SESSION["cadastroSuccess"]=true;
-
-
-
-            }
-            if($_POST["tiporequisicao"]=="login"){
-                //login na aplicação
-                echo "executar login na aplicação";
-                $_SESSION["cadastroErros"]=true;
-            }
-            print_r($_POST);
-            exit;
-        }
-        require_once __DIR__ . '/../Views/login.php';
-    }
-
+    //usuário logado
     public function principal()
     {
-        require_once __DIR__ . '/../Views/principal.php';
-    }
-
-    public function veiculos()
-    {
-        require_once __DIR__ . '/../Views/veiculos.php';
+        require_once __DIR__ . '/../Views/Pages/Auth/principal.php';
     }
 
     public function funcionarios()
     {
-        require_once __DIR__ . '/../Views/funcionarios.php';
+        require_once __DIR__ . '/../Views/Pages/Auth/funcionarios.php';
     }
 
     public function chamados()
     {
-        require_once __DIR__ . '/../Views/chamados.php';
+        require_once __DIR__ . '/../Views/Pages/Auth/chamados.php';
     }
-    public function relatorios()
-    {
-        require_once __DIR__ . '/../Views/relatorios.php';
-    }
+
 }

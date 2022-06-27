@@ -3,11 +3,11 @@ include($_SERVER["DOCUMENT_ROOT"] . "/App/Views/Pages/Auth/header.php");
 include($_SERVER["DOCUMENT_ROOT"] . "/App/Views/Pages/Auth/Element/nav-menu-autenticado.php");
 ?>
 
-<h1 class="title">Cadastro de Veiculos</h1>
+<h1 class="title">Cadastro de <?php echo $vars["nameController"];?></h1>
 
-<form action="/Veiculos/novo" method="POST">
+<a style="color: white;" href='/<?php echo $vars["nameController"];?>/index'><span class="btncrud">< Voltar</span></a>
 
-
+<form action="/<?php echo $vars["nameController"];?>/novo" method="POST">
     <section class="formulario">
         <div class="inputs">
             <div class="input-row">
@@ -26,13 +26,8 @@ include($_SERVER["DOCUMENT_ROOT"] . "/App/Views/Pages/Auth/Element/nav-menu-aute
                 <input autocomplete="off" name="autonomia" type="text" required placeholder="Digite uma Autonomia para cadastrar na tabela">
             </div>
         </div>
-        <div class="btncrud">
-            <button type="submit" class="">Salvar</button>
+        <input type="submit" value="Salvar" class="btncrud" />
+    </section>
 </form>
-<button class=""><a style="color: white;" href='/Veiculos/index'>Voltar</a></button>
-</div>
-</section>
-
-
 
 <?php include($_SERVER["DOCUMENT_ROOT"] . "/App/Views/Pages/Auth/footer.php"); ?>

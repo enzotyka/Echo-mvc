@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Jun-2022 às 02:02
+-- Tempo de geração: 24-Jun-2022 às 17:04
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.3.33
 
@@ -30,13 +30,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `chamados` (
   `id` int(11) NOT NULL,
   `km_rodado` double NOT NULL,
+  `data` date NOT NULL,
   `funcionario_id` int(11) NOT NULL,
   `veiculo_id` int(11) NOT NULL,
-  `data` date NOT NULL,
-  `funcionarios_id` int(11) NOT NULL,
-  `veiculos_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL
+  `usuario_id` int(11) NOT NULL,
+  `disponivel` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `chamados`
+--
+
+INSERT INTO `chamados` (`id`, `km_rodado`, `data`, `funcionario_id`, `veiculo_id`, `usuario_id`, `disponivel`) VALUES
+(13, 100, '2022-06-22', 3, 1, 1, 'N'),
+(15, 150, '2022-06-23', 5, 4, 1, 'N'),
+(16, 250, '2022-06-23', 6, 5, 1, 'S'),
+(17, 300, '2022-06-23', 3, 5, 1, 'N'),
+(19, 550, '2022-06-24', 3, 4, 1, 'N');
 
 -- --------------------------------------------------------
 
@@ -47,8 +57,18 @@ CREATE TABLE `chamados` (
 CREATE TABLE `funcionarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `cpf` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+  `cpf` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `funcionarios`
+--
+
+INSERT INTO `funcionarios` (`id`, `nome`, `cpf`, `usuario_id`) VALUES
+(3, 'Felipe', '33835698885', 1),
+(5, 'Giane', '283.302.920-96', 1),
+(6, 'Luan', '054.525.400-08', 1);
 
 -- --------------------------------------------------------
 
@@ -64,6 +84,14 @@ CREATE TABLE `usuario` (
   `senha` varchar(32) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `cnpj`, `razao_social`, `email`, `senha`) VALUES
+(1, '16.073.198/0001-73', 'Felipe R Farias LTDA', 'feliperfariasdev@gmail.com', '212b5fe0bb8c6d72e151fc297652d4fc'),
+(2, '90.249.655/0001-90', 'Cura do beija flor', 'beijafor@gmail.com', '212b5fe0bb8c6d72e151fc297652d4fc');
+
 -- --------------------------------------------------------
 
 --
@@ -73,9 +101,20 @@ CREATE TABLE `usuario` (
 CREATE TABLE `veiculos` (
   `id` int(11) NOT NULL,
   `placa` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `modelo` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `marca` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `autonomia` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+  `autonomia` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `veiculos`
+--
+
+INSERT INTO `veiculos` (`id`, `placa`, `modelo`, `marca`, `autonomia`, `usuario_id`) VALUES
+(1, 'LJR-0050', 'Ghibli S Q4 3.0 V6 410cv Aut.', 'Maserati', '10', 1),
+(4, 'KGH-7715', 'BR-800 (todos)/ Supermini', 'Gurgel', '10', 1),
+(5, 'MVF-9597', 'SX4 S-CROSS GLX 1.6 16V Aut.', 'Suzuki', '8', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -86,27 +125,34 @@ CREATE TABLE `veiculos` (
 --
 ALTER TABLE `chamados`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_chamados_funcionarios_idx` (`funcionarios_id`),
-  ADD KEY `fk_chamados_veiculos_idx` (`veiculos_id`),
+  ADD UNIQUE KEY `kf_veiculo_disponivel` (`disponivel`,`veiculo_id`,`data`),
+  ADD KEY `fk_chamados_funcionarios_idx` (`funcionario_id`),
+  ADD KEY `fk_chamados_veiculos_idx` (`veiculo_id`),
   ADD KEY `fk_chamados_usuario_idx` (`usuario_id`);
 
 --
 -- Índices para tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cpf_UNIQUE` (`cpf`),
+  ADD KEY `fk_funcionarios_usuario1_idx` (`usuario_id`);
 
 --
 -- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cnpj_UNIQUE` (`cnpj`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
 -- Índices para tabela `veiculos`
 --
 ALTER TABLE `veiculos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `placa_UNIQUE` (`placa`),
+  ADD KEY `fk_veiculos_usuario1_idx` (`usuario_id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -116,25 +162,25 @@ ALTER TABLE `veiculos`
 -- AUTO_INCREMENT de tabela `chamados`
 --
 ALTER TABLE `chamados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `veiculos`
 --
 ALTER TABLE `veiculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
@@ -144,9 +190,21 @@ ALTER TABLE `veiculos`
 -- Limitadores para a tabela `chamados`
 --
 ALTER TABLE `chamados`
-  ADD CONSTRAINT `fk_chamados_funcionarios` FOREIGN KEY (`funcionarios_id`) REFERENCES `funcionarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_chamados_funcionarios` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_chamados_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_chamados_veiculos` FOREIGN KEY (`veiculos_id`) REFERENCES `veiculos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_chamados_veiculos` FOREIGN KEY (`veiculo_id`) REFERENCES `veiculos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD CONSTRAINT `fk_funcionarios_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `veiculos`
+--
+ALTER TABLE `veiculos`
+  ADD CONSTRAINT `fk_veiculos_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
